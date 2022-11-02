@@ -18,12 +18,14 @@ const Update = ({ setOpenUpdate, user }) => {
   const upload = async (file) => {
     console.log(file)
     try {
-      const formData = new FormData();
-      formData.append("file", file);
-      const res = await makeRequest.post("/upload", formData);
+      const data = new FormData();
+      const fileName = Date.now() + file.name;
+      data.append("name", fileName);
+      data.append("file", file);
+      const res = await makeRequest.post("/upload", data);
       return res.data;
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -52,13 +54,12 @@ const Update = ({ setOpenUpdate, user }) => {
     
     let coverUrl;
     let profileUrl;
-    coverUrl = cover ? await upload(cover) : user.coverPic;
+    coverUrl = cover ? await upload(cover) : user.coverPic ;
     profileUrl = profile ? await upload(profile) : user.profilePic;
     
     mutation.mutate({ ...texts, coverPic: coverUrl, profilePic: profileUrl });
     setOpenUpdate(false);
-    setCover(null);
-    setProfile(null);
+    
   };
 
   return (
