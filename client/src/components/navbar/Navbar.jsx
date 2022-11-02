@@ -40,7 +40,7 @@ const Navbar = () => {
         <NotificationsOutlinedIcon />
         <div className="user">
 
-          <Link to={`/profile/${currentUser.username}`}>{currentUser.name}</Link>
+          <Link to={`/profile/${currentUser.id}`}>{currentUser.name}</Link>
            
         </div>
       </div>
