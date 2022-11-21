@@ -41,7 +41,7 @@ const Navbar = () => {
         <div className="user">
 
           <Link to={`/profile/${currentUser.id}`}>{currentUser.name}</Link>
-           
+          <img src={"/upload/"+currentUser.profilePic} alt="" />
         </div>
       </div>
     </div>
